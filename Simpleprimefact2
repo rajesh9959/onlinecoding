@@ -1,0 +1,76 @@
+#include <stdio.h>
+ 
+long GetMinPrime(long P)
+{
+	if(P%2==0)  
+		return 2;
+	else if (P%3==0)
+		return 3;
+	else if (P%5==0)
+		return 5;
+	else 
+	{
+		long i;
+		short status=-1;
+		
+		for (i=1;i<=(long)(ceil(sqrt(P)/6))+1;i++)
+		{
+			if (P%(6*i-1)==0)
+				return (6*i-1);
+			else if (P%(6*i+1)==0)
+				return (6*i+1);
+		}
+		return P;
+	}
+}
+ 
+ 
+int main()
+{
+    long P,minpr,N,odd;
+    int i,j,cnt;//,totpr
+    
+    scanf("%ld",&N);
+    for(i=0;i<N;i++)
+    {
+    	scanf("%ld",&P);
+    	long d[25][2];
+    	cnt=0;
+    	odd=2;
+    	if(P%2==1)
+    	{
+    		printf("2^0");
+    		cnt++;
+    		odd=0;
+    	}
+    	else
+    		odd=1;
+    	while(1)
+    	{
+	    	minpr=GetMinPrime(P);
+	    	if (minpr==1 || (minpr==P && odd==0 &&cnt==1))
+	    	{
+	    		printf("\n");
+	    		break;
+	    	}
+	    	else
+	    	{
+	    		if(cnt>0)
+	    			printf("*");
+	    		cnt++;
+	    		for(j=0;j<30;j++)
+	    		{
+	    			if (P%minpr==0)
+	    				P=P/minpr; 
+	    			else
+	    			{
+	    				printf("%ld^%d",minpr,j);
+	    				
+	    				break;
+	    			}
+	    		}
+	    	}
+    	}
+    }
+    return 0;
+}
