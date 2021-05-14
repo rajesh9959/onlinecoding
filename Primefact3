@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main() {
+   long int t;
+   scanf("%lld",&t);
+   while(t!=0){
+	   long long int n;
+	   scanf("%lld",&n);
+   long int div=2, ans = 0, maxFact,m;
+   while(n/div>=1) {
+      if(n % div !=0)
+         div = div + 1;
+      else {
+         maxFact = n;
+         n = n / div;
+      }
+   }printf("%d\n",maxFact);
+   t--;
+   }
+   return 0;
+}
