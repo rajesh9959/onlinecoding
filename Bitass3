@@ -1,0 +1,40 @@
+int main()
+{
+int [20],c,i,j,p,t,n,temp;
+    scanf("%d",&t);
+    for(i=1;i<=t;i++)
+    {
+        c=0;p=0;
+        scanf("%d",&n);
+        temp=n;
+        while(temp>1)
+        {
+            if(temp%2==0)
+          
+                a[c]=0;
+                c++;
+            }
+            else
+            {
+                a[c]=1;
+                c++;
+            }
+            temp=temp/2;
+            
+        }    
+            for(j=0;j<c;j++)
+            {
+                if(a[j]==1)
+                p=p+1;
+                
+                
+                
+            }
+            printf("%d",p+1);
+            
+            
+        
+        printf("\n");
+    }
+	//code
+	return 0
