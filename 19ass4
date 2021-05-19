@@ -1,0 +1,27 @@
+public List<List<Integer>> permuteUnique(int[] nums) {
+ 		
+		List<List<Integer>> result=new ArrayList<>();
+		boolean isVisited[]=new boolean[nums.length]; 
+		
+		backTracking(result, isVisited, new ArrayList<Integer>(), nums);
+		return result;
+    }
+	
+	
+	public static void backTracking(List<List<Integer>> result, boolean isVisited[], ArrayList<Integer> current,int[] nums){
+	
+		if(current.size()==nums.length && !result.contains(new ArrayList(current))){
+			result.add(new ArrayList(current));
+			return ;
+		}
+		
+		for(int i=0; i<nums.length; i++){
+			if(isVisited[i]) continue;
+			current.add(nums[i]);
+			isVisited[i]=true;
+			backTracking(result, isVisited, current, nums);
+			isVisited[i]=false;
+			current.remove(current.size()-1);
+		}
+	}
+}
