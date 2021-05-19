@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> ans;
+    
+    void util(vector<int> comb, int i, int curr_sum, int target, vector<int>& candidates){
+        if (curr_sum==target){
+            ans.push_back(comb);
+            return;
+        }
+       
+        for (; i<candidates.size(); i++){
+            if (curr_sum+candidates[i]<=target){
+                comb.push_back(candidates[i]);
+                util(comb, i, curr_sum+candidates[i], target, candidates);
+                comb.pop_back();
+            }
+            // Rejecting larger elements
+            else
+                return;
+        }
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        ios_base::sync_with_stdio(false);	
+        cin.tie(NULL);	
+        sort(candidates.begin(), candidates.end());
+        util({}, 0, 0, target, candidates);
+        return ans;
+    }
+};
