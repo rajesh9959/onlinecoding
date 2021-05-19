@@ -1,0 +1,40 @@
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        int[] count = findCount(candidates);
+        List<List<Integer>> result = new ArrayList<>();
+        findComb(result, new LinkedList<>(), count, 0, 0, target);
+        return result;
+    }
+    
+    private void findComb(List<List<Integer>> result, LinkedList<Integer> lst, int[] c,
+                         int index, int rs, int target){
+        if(rs == target){
+            result.add(new LinkedList<Integer>(lst));
+            return;
+        }
+
+        for(int i=index; i<c.length; ++i) {
+            if(c[i]>0){
+                int x = i;
+                if(rs + x <= target){
+                    --c[i];
+                    lst.addLast(x);
+                    findComb(result, lst, c, i, rs+x, target);
+                    lst.removeLast();
+                    ++c[i];
+                }else{
+                    break;
+                }
+            }
+        }
+    }
+    
+    private int[] findCount(int[] candidates){
+        int[] count = new int[51];
+        for(int i=0;i<candidates.length;++i){
+            ++count[candidates[i]];
+        }
+        return count;
+    }
+}
